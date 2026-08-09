@@ -1,435 +1,660 @@
-SWATI CHAUHAN // AI PM
-Nestly
-FlameRewards
-PawConnect
-STRIDE
-TrustLane
-InterviewIQ
-Contact
-SENIOR PRODUCT MANAGER · AI & AGENTIC SYSTEMS
-I build and ship agentic AI products, end to end.
-6+ years as a product manager — from production GenAI at platform scale to live multi-agent systems I design, build, and deploy myself. Below are six, in depth: the product thinking, the architecture, the stack, and the results.
-✦ swatic0704@gmail.com
-↗ LinkedIn
-↗ GitHub
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Swati Chauhan — AI Product Manager</title>
+<meta name="description" content="Swati Chauhan — Product manager who builds and ships agentic AI products end to end. In-depth case studies: Nestly, PawConnect, STRIDE." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --evergreen-deep:#3730A3; --evergreen:#4F46E5; --ivory:#F7F8FC; --paper:#FFFFFF;
+    --ink:#252A38; --muted:#6E7384; --gold:#6366F1; --gold-deep:#4F46E5; --line:#E7E9F2; --indigo-tint:#EEEDFE;
+    --display:'Space Grotesk',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;font-family:var(--body);color:var(--ink);background:var(--ivory);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
 
-Nestly — AI interior-design platform · live · custom MCP server
-FlameRewards — GenUI QSR loyalty concept · hackathon winner
-PawConnect — agentic volunteering assistant · 3-agent LangGraph system
-STRIDE — autonomous shopping agent · x402 machine-to-machine payments
-TrustLane — agent-identity & trust layer for booking platforms · co-built
-InterviewIQ — AI interview-prep platform · product & system design
-ABOUT
-I'm a product manager who builds the thing, not just specs it. At Albertsons I shipped the loyalty platform's first agentic AI experience and an enterprise GenAI conversational search engine. On my own time I design, build, and deploy multi-agent systems end to end — RAG pipelines, agent memory, reasoning loops, a custom MCP server, and autonomous on-chain payments. Each case study below is the real work: the decisions I made, how the system is wired, and what shipped.
-LIVE PRODUCT · SOLO BUILD
-Nestly
-An AI interior-design platform that turns a single room photo into an editorial-quality, fully shoppable redesign.
-ROLE
-Solo — problem definition, UX, full generation funnel, MCP server
-STACK
-Next.js / React · Claude · OpenAI gpt-image-1 · Supabase (pgvector, Auth, Storage) · Vercel
-STATUS
-Live in production
-LINKS
-nestly-omega.vercel.app ↗
-CONTEXT
-Redesigning a room is hard to picture and harder to shop. Existing tools split the problem in two: image generators make pretty rooms you can't actually buy, and retail catalogs sell products with no design vision. The gap is a tool that does both — produces a redesign with real design taste, and the shoppable products to build it, personalized to a person's style and budget.
-PRODUCT DECISIONS
-Treat output quality as the core product risk.
-One off-brand image breaks trust in an AI design tool, so I built a dedicated quality-control stage into the pipeline — the model has to pass its own QC before a result reaches the user. Output consistency across 22 moods and 15 room types was the bar, not raw generation.
-Make it shoppable, not just pretty.
-The redesign and the commerce are one flow: click-to-shop product cards routed by budget tier across partner retailers. Design vision and "buy it now" live on the same screen.
-Gate generation to convert.
-Anonymous visitors get one free generation, then sign in for more. The funnel is tuned to turn first-time curiosity into accounts without killing the first taste of the product.
-Ground the model in real design taste.
-I built a ~339-chunk RAG corpus from design editorial so outputs reflect actual design principles — palette, materials, proportion — instead of generic LLM aesthetics.
-HOW IT WORKS — 6-AGENT RAG PIPELINE
-Retrieval
-›
-Vision analysis
-›
-Design strategy
-›
-Prompt engineering
-›
-Image · gpt-image-1
-›
-Quality control
-Retrieval
-Pulls relevant design references from the pgvector corpus to ground the redesign in real editorial.
-Vision analysis
-Reads the uploaded room photo — layout, lighting, existing pieces — to anchor the redesign to the actual space.
-Design strategy
-Chooses palette, materials, and mood for the redesign from the retrieved references and the user's chosen style.
-Prompt engineering
-Composes the image-generation prompt from the strategy and references, so the render is on-brief.
-Image generation
-OpenAI gpt-image-1 renders the photorealistic redesign (upgraded from DALL·E 3 for fidelity).
-Quality control
-Checks the output stays on-brand and on-spec before it's returned — the trust gate of the whole pipeline.
-THE MCP SERVER
-I built a custom MCP (Model Context Protocol) server that exposes the design knowledge base to an AI agent as five callable tools, so the agent reasons with structured, authoritative domain knowledge instead of guessing.
-get_style_guide
-Detailed info on 10 design styles — materials, palettes, retailers, price anchors, trend notes.
-get_design_principles
-Eight core rules (60-30-10 color, rule of three, focal point, scale, lighting, negative space, texture, traffic flow).
-generate_product_queries
-Builds retailer-optimized, budget-aware search queries (specific 5–8 word queries instead of vague 2–4 word ones).
-blend_styles
-Advises on mixing two or more styles — shared materials, combined palettes, dominant-vs-accent strategy.
-search_design_editorial
-Points to results across Dezeen, AD, Elle Decor, Apartment Therapy, House Beautiful.
-STACK
-Frontend / deploy
-Next.js / React, deployed on Vercel
-Orchestration
-Claude — reasoning across the six pipeline agents
-Image generation
-OpenAI gpt-image-1
-Data / RAG
-Supabase pgvector — ~339-chunk design corpus; Auth for the gated funnel; Storage for shareable outputs
-Agent tooling
-Custom MCP server exposing five domain tools
-OUTCOME
-Live
-Shipped & deployed
-22 × 15
-Moods × room types, on-brand
-5 tools
-Custom MCP server
-~339
-RAG corpus chunks
-HACKATHON WINNER · FLUTTER SF × VERY GOOD VENTURES GENUI
-FlameRewards
-A QSR loyalty concept where a 5-agent system composes each member's quests and challenge screens as generative UI, rendered fresh at runtime instead of fixed layouts.
-ROLE
-Solo — built and pitched as the only PM in the room
-STACK
-Flutter (Dart) · GenUI SDK · Featherless AI — Qwen2.5-72B-Instruct · Supabase (PostgreSQL)
-STATUS
-Hackathon winner
-BUILT AT
-Flutter SF × Very Good Ventures GenUI Hackathon
-CONTEXT
-QSR loyalty is one-size-fits-all — every member sees the same static points, offers, and challenges. FlameRewards reimagines a McDonald's-style loyalty app where the experience itself is personalized: instead of fixed screens, a multi-agent system generates each member's quests and challenge cards on the fly, tuned to how they actually order.
-PRODUCT DECISIONS
-Personalize the interface, not just the content.
-Most "personalization" swaps which offer shows inside a fixed layout. The generative-UI bet is bigger: let the model compose the screen itself, which quest, framed how, with what challenge, so the UI adapts to the member instead of the member adapting to the UI.
-Solve cold start before solving personalization.
-A new member has no order history to personalize from, so I designed cohort borrowing, using behavior patterns from similar members, as the fallback until the system has enough of their own data to switch to direct collaborative filtering.
-Never let an LLM call be a single point of failure.
-This was live and demoed, so every LLM call has a deterministic fallback. If generation fails or times out, the member still gets a coherent, on-brand screen instead of a broken one. Reliability was as much the product as personalization was.
-Keep the model to two calls per session.
-A Quest Agent and a Cold Start Agent cover the experience, keeping latency and cost predictable instead of chaining calls per widget.
-HOW IT WORKS — 5-AGENT SYSTEM
-Behavior data
-›
-Cold Start / Quest Agent
-›
-Qwen2.5-72B via Featherless
-›
-GenUI SDK
-›
-Rendered in Flutter
-Cold Start Agent
-Builds a starting experience for new members via cohort borrowing when there's no order history yet.
-Quest Agent
-Composes each member's quests and challenges once enough behavioral data exists.
-Collaborative filtering
-Reads the behavior_patterns table to match members to relevant quests based on similar members' activity.
-GenUI SDK
-Takes the model's output and composes it into a live widget tree from an 8-widget custom catalog, not a static template.
-Deterministic fallback
-Wraps every LLM call so a failed or slow generation still renders a coherent screen.
-STACK
-Frontend
-Flutter (Dart, Web) with 8 custom GenUI catalog widgets
-UI generation
-GenUI SDK — runtime widget composition from model output
-LLM inference
-Featherless AI, running Qwen2.5-72B-Instruct via an OpenAI-compatible API (openai_dart)
-Data
-Supabase (PostgreSQL) — 5 tables: users, order_history, bonus_paths, behavior_patterns, play_earn_events, with parallel query batching
-OUTCOME
-Winner
-Solo, only PM in the room
-5 agents
-Cold start + quest generation
-2 calls
-LLM calls per session
-STANFORD AGENTIC AI · CAPSTONE
-PawConnect
-An AI assistant that matches people to local animal-volunteering and fostering opportunities — scoped, built, and shipped in a 48-hour window.
-ROLE
-Solo — directed the architecture and shipped end to end
-TIMELINE
-48-hour build
-STACK
-Python · LangGraph · Claude Sonnet · Supabase (pgvector) · text-embedding-3-small · Streamlit
-STATUS
-Live · 37 tests passing (32 unit + 5 e2e)
-LINKS
-Live Demo ↗  ·  GitHub ↗
-CONTEXT
-There's no single source of truth for local animal-volunteering and fostering opportunities — the information is scattered across shelters, each with its own site and format. I scoped the problem from a real user persona and owned it from there: someone who wants to help but can't easily find where, how, or whether they're a fit.
-PRODUCT DECISIONS
-Separate the domain into three agents instead of one.
-Data, volunteering, and fostering are distinct intents with distinct logic. Splitting them gave cleaner intent routing and higher accuracy than a single agent trying to do everything — and made each part testable in isolation.
-Invest in retrieval quality over breadth.
-A wrong match erodes trust fast in a matching product, so I tuned the chunking strategy and added a re-ranking pass to push relevance to 0.95–0.97 rather than chasing a bigger, noisier index.
-Build trust and safety guardrails in from the start.
-Matching volunteers and foster homes to animals needs rails, not just relevance — so the system enforces a no-show policy and foster-return logic, blocking matches that fail those checks.
-Pivot the data source to protect the timeline.
-When the Petfinder API was discontinued mid-build, I made the call to pivot to a curated 20-shelter dataset rather than chase a blocked integration — keeping a tested product shipping inside the 48-hour window. Prioritization under a hard constraint.
-HOW IT WORKS — 3-AGENT LANGGRAPH SYSTEM
-Intent routing
-›
-Data agent
-·
-Volunteering agent
-·
-Fostering agent
-Orchestrator
-Routes each request to the right agent by detected intent (LangGraph manages multi-agent state).
-Data agent
-Ingests and serves the shelter dataset — the system's source of truth.
-Volunteering agent
-Matches a person to local volunteering opportunities based on intent and context.
-Fostering agent
-Matches fostering requests, applying the foster-return safety guardrail.
-Reasoning + memory
-Plan-and-Execute + ReAct + Tree-of-Thoughts reasoning over a CoALA memory framework.
-Retrieval
-88 chunks in Supabase pgvector (256/512-char strategy), text-embedding-3-small, re-ranked with Claude Sonnet.
-STACK
-Orchestration
-LangGraph — 3 agents + orchestrator, intent-based routing
-Reasoning
-Plan-and-Execute · ReAct · Tree of Thoughts · CoALA memory
-Retrieval
-Supabase pgvector (88 chunks), text-embedding-3-small, Claude Sonnet re-ranking
-UI / deploy
-Streamlit on Streamlit Cloud
-Quality
-37 tests — 32 unit + 5 end-to-end (pytest)
-OUTCOME
-0.95–0.97
-Match relevance
-37
-Tests passing
-48 hrs
-Scoped to shipped
-Live
-Deployed on Streamlit
-INTERNET OF AGENTS HACKATHON · AGI HOUSE × COFRAME
-STRIDE
-An autonomous shopping agent that closes the gap between recommending and buying — and can be trusted to spend.
-ROLE
-Co-built — I owned the trust & control layer and the user experience
-STACK
-Python · x402 / Base Sepolia (USDC) · Claude Sonnet · Streamlit · FastAPI
-STATUS
-Working prototype
-BUILT AT
-Internet of Agents Hackathon (AGI House × Coframe)
-CONTEXT
-AI can recommend products but can't buy them, and most shopping agents are stateless — no memory across sessions, no learning, and no safe way to let them transact. STRIDE is an agent that remembers a user's preferences, learns what works, and completes purchases autonomously within limits the user sets.
-My role: STRIDE was co-built at a hackathon. I owned the trust & control layer (permissions and payments) and the onboarding-to-results experience — the parts that make an autonomous spending agent safe and legible. The sections below focus on what I owned, with the wider system described for context.
-PRODUCT DECISIONS (WHAT I OWNED)
-Make autonomous spending safe by design.
-For an agent that spends real money, trust is the product. I designed scoped, non-escalatable permissions set at onboarding — approved sites, spend ceiling, categories — that no agent can override mid-session, plus always-visible Pause / Approve / Override controls.
-Pay machine-to-machine, never expose a card.
-Payments run agent-to-merchant over the x402 protocol — real USDC transfers on Base Sepolia (EIP-3009) — so a purchase completes without a human card ever entering the loop.
-Make the agent legible, not a black box.
-I designed the experience so users can see the agent's live reasoning and watch its results improve, rather than trusting a silent process — the observability is what earns the permission to act.
-THE TRUST & CONTROL LAYER
-Scoped permissions
-·
-Pause / Approve / Override
-·
-x402 machine-to-machine payments
-Auth (permissions)
-Issues a scoped credential at session start defining exactly what the agent may do — approved sites, spend ceiling, categories. No agent can escalate mid-session.
-Controls
-Always-visible Pause / Approve / Override — the human stays in the loop on every autonomous action.
-Payments
-x402 HTTP-402 flow: real USDC transfers on Base Sepolia (EIP-3009), settled machine-to-machine and verifiable on-chain, with no card exposed.
-THE EXPERIENCE I DESIGNED
-A Streamlit app in three screens: a five-question onboarding that captures the user's preferences and limits; a live run view that streams the agent's reasoning as it works; and a results view that shows what it did and the payment confirmation. The whole flow is built so the user can see, pause, or override at any point.
-THE WIDER SYSTEM (CO-BUILT, FOR CONTEXT)
-Beyond the trust layer, STRIDE runs a multi-agent loop: a memory layer that persists preferences across sessions, a shopping agent that reads live retail pages and reasons over them, a reflexion step that writes plain-English lessons after each run, and a reinforcement-learning loop that converges on the best strategy for each user over a handful of runs.
-STACK
-Payments (mine)
-x402 SDK · Base Sepolia testnet · USDC (EIP-3009) · eth-account · FastAPI checkout server
-Experience (mine)
-Streamlit — onboarding, live run view, results
-Reasoning
-Claude Sonnet — shopping agent (ReAct loop)
-Web reading
-Jina.ai Reader — live pages to structured markdown
-OUTCOME
-Autonomous
-Purchase within guardrails
-x402
-M2M payments, no card exposed
-Legible
-Live reasoning shown to user
-HACKATHON · AGI HOUSE × 1PASSWORD AGENT IDENTITY
-TrustLane
-Agent-identity and fraud infrastructure for booking platforms — a trust layer that sits between AI agents and payment systems, scoring every action before money moves.
-ROLE
-Co-built — team of two
-STACK
-Python · Claude Sonnet (tool_use) · 1Password SDK · FastAPI · HMAC · pytest
-STATUS
-Working prototype · 29 tests
-BUILT AT
-AGI House × 1Password Agent Identity Hackathon
-LINKS
-GitHub ↗
-My role: TrustLane was co-built as a team of two with Rohit — we built it together across the agent pipeline, the trust model, and the console.
-CONTEXT
-AI agents are starting to book and pay on people's behalf, but the platforms they transact with have no way to know whether an agent is in-scope, uncompromised, and safe to trust with a credential. TrustLane is the B2B trust and identity layer that sits between agents and payments: it scores every agent action and releases a scoped credential only when that action clears.
-PRODUCT DECISIONS
-Rule-based scoring, not an LLM judge.
-The thing deciding whether money can move has to be deterministic and auditable, so trust is scored by explicit signals and weights, not another model. It's safe to run live and every decision can be explained.
-Score per agent, not one universal score.
-A read-only search agent and a money-moving payment agent carry very different risk, so each agent type is scored on differently weighted signals — the payment agent is weighted hardest on source trust and budget conformance.
-Decay trust across delegation hops.
-The deeper an action is delegated agent-to-agent, the less it should be trusted. Trust decays each hop (1.0 to 0.9 to 0.8 and down) and past a few hops can never auto-approve, modeling the real risk of long delegation chains.
-Scope credentials to a single use.
-When an action clears, the released credential is bound to one merchant, one amount, and a 30-second lifetime, and can't be re-delegated. The secret never even loads into memory on a block or review. Least privilege, enforced.
-HOW IT WORKS — 6-AGENT SYSTEM
-Orchestrator
-›
-Search
-›
-Booking
-›
-Payment
-·
-Delegation
-·
-Trust Arbiter
-Orchestrator
-Routes tasks to the right sub-agent.
-Search agent
-Browses inventory, read-only — lowest scrutiny.
-Booking agent
-Reserves listings, requires a credential.
-Payment agent
-Moves money, held to the highest scrutiny.
-Delegation agent
-Validates HMAC-signed delegation tokens.
-Trust Arbiter
-Scores every action and holds final authority to approve, review, or block.
-THE TRUST MODEL
-5 signals
-Source trust, scope conformance, budget conformance, vendor allowlist, identity validity — weighted per agent type.
-Hard caps
-A detected injection forces a review; a missing delegation forces a block — regardless of score.
-Trust decay
-Score drops each delegation hop; hop 4+ can never auto-approve.
-Self-learning reputation
-Agents earn or lose trust from outcomes (plus on success, minus on error), feeding back as a multiplier.
-Scoped credentials
-1Password-backed: one merchant, one amount, 30-second lifetime, non-delegatable.
-THE DEMO
-A three-column console shows the whole flow live: inbound agent operations on the left, the user's phone (what the person sees) in the center, and outbound agent operations on the right. A real Claude Sonnet agent with tool_use can run any city and any request through the full trust pipeline, with a deterministic replay mode for demo safety.
-STACK
-Core engine
-Python — rule-based scoring, zero framework dependencies
-Live agent
-Claude Sonnet (Anthropic SDK) with tool_use
-Credentials
-1Password SDK — scoped, single-use credential vault
-Delegation
-HMAC-signed delegation tokens (stdlib)
-Interfaces
-FastAPI plus a single-file HTML/CSS/JS console
-Quality
-29 tests (pytest)
-OUTCOME
-6 agents
-Full trust pipeline
-Rule-based
-Deterministic, auditable scoring
-29
-Tests passing
-PRODUCT & SYSTEM DESIGN · PHASE 1
-InterviewIQ
-An AI interview-prep platform — role- and JD-tailored mock interviews with structured, STAR-based feedback. This case study is the Phase 1 product definition and system design.
-ROLE
-Product lead — scope, architecture, data & privacy strategy, cost modeling
-DELIVERABLE
-Phase 1 PRD + system design (architecture, data strategy, cost analysis)
-LLM APPROACH
-Hosted GPT for Phase 1, with a self-hosting path mapped for later
-STATUS
-Phase 1 spec
-CONTEXT
-Interview prep is generic — candidates rehearse canned questions with no tailoring to the role or the specific job, and no structured feedback on how they answered. InterviewIQ generates role- and JD-specific mock interviews and scores each answer against the STAR framework, so practice maps to the job a candidate is actually targeting.
-PHASE 1 SCOPE
-Onboarding
-Minimal profile (role, industry, experience) with email or Google/LinkedIn OAuth.
-Mock interview
-LLM generates role/industry-specific questions and chains follow-ups via session memory; a STAR hint sits above each question.
-JD "lite" analyzer
-Paste a job description; the LLM extracts 3–5 core competencies and crafts one tailored question per competency.
-Feedback engine
-A "critic" prompt scores STAR adherence 1–5 and returns top strengths and gaps.
-Progress tracker
-Recent sessions, average score, and an improvement indicator across attempts.
-PRODUCT DECISIONS
-Start hosted, self-host later.
-Phase 1 ships on hosted GPT for speed to market; self-hosting is deferred until product–market fit justifies the infra and engineering cost. I mapped the full trade-off across time-to-market, cost, scalability, ops, customization, latency, privacy, and model freshness so the future migration is a deliberate call.
-Use RAG to anchor questions in reality.
-Instead of zero-shot JD parsing, retrieve similar real-world JDs and the questions companies actually ask — cutting hallucination and surfacing real interview patterns. The same retrieval pattern powers company-specific prep, personalized coaching snippets, resume-augmented prompting, and a resource recommender.
-Privacy by design.
-Resumes, transcripts, and identifiers are sensitive, so optional data is deferred until opt-in; everything is encrypted in transit (TLS 1.2+) and at rest (AES-256 via KMS), gated by RBAC and least-privilege, with GDPR export/delete rights and retention plus anonymization built in from the start.
-Make the build decision economic, not vibes.
-I modeled three implementation options with monthly cost ranges at pilot scale, so the architecture choice is grounded in real numbers.
-SYSTEM ARCHITECTURE — THE RIGHT STORE FOR EACH JOB
-User profile
-PostgreSQL — ACID transactions, strong schema, joins
-Auth
-Secrets Manager / Vault — encrypted token storage, rotation
-Session memory
-Redis — low-latency context for live interviews
-Interview records
-MongoDB / S3 — flexible transcripts + feedback
-Job descriptions
-Pinecone + Redis cache — semantic retrieval for RAG
-Analytics
-ClickHouse / BigQuery — score-trend aggregations
-Resource library
-S3 + CloudFront — scalable asset delivery
-COST ANALYSIS — MONTHLY, AT ~1,000 SESSIONS
-Option A
-Hosted GPT + serverless — lowest ops, instant autoscaling. ~$974–$1,654/mo.
-Option B
-Hosted GPT + dedicated VMs — predictable baseline, more ops. ~$1,122–$1,602/mo.
-Option C
-Fully self-hosted GPT — full data control, high fixed cost. ~$3,600–$4,100/mo.
-WHAT THIS DELIVERED
-5
-Phase 1 features scoped
-7
-Data domains architected
-5
-RAG applications mapped
-3
-Cost options modeled
-TOOLKIT
-AI & AGENTIC SYSTEMS
-LLM application development, RAG, MCP server design, multi-agent orchestration (LangGraph), agent memory (CoALA), prompt engineering, reasoning patterns (ReAct, Plan-and-Execute, Tree of Thoughts), vector search (pgvector), tool / function design, A2A patterns.
-PRODUCT
-Roadmap planning, PLG, GTM strategy, PRD ownership, A/B testing & experimentation, user research, 0→1 product development, monetization.
-PLATFORM & DATA
-API design, microservices, identity & payment systems (x402), SQL, Python, Supabase, Next.js / React, Streamlit, Vercel, GCP.
-GET IN TOUCH
-Let's build something.
-swatic0704@gmail.com
-LinkedIn ↗
-GitHub ↗
-© 2026 Swati Chauhan · Menlo Park, CA · Built and deployed by hand.
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-bottom:1px solid rgba(99,102,241,.22);}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;}
+  nav .brand{font-family:var(--mono);font-size:13px;letter-spacing:.04em;color:var(--ink);font-weight:500;}
+  nav .brand b{color:var(--gold);}
+  nav .links{display:flex;gap:22px;font-family:var(--mono);font-size:12.5px;letter-spacing:.02em;}
+  nav .links a{color:var(--muted);text-decoration:none;transition:color .2s;}
+  nav .links a:hover{color:var(--gold);}
+  @media(max-width:620px){nav .links{display:none;}}
+
+  /* hero */
+  header.hero{background:radial-gradient(130% 120% at 88% -12%,#EEEDFE 0%,#F4F5FB 52%,#FFFFFF 100%);color:var(--ink);padding:84px 0 76px;overflow:hidden;}
+  .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
+  header.hero h1{font-family:var(--display);font-weight:600;font-size:clamp(2.6rem,6.4vw,4.6rem);line-height:1.04;letter-spacing:-.02em;margin:18px 0 0;max-width:16ch;}
+  header.hero h1 .light{color:var(--gold);}
+  .hero-sub{margin:22px 0 0;font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--muted);max-width:56ch;}
+  .hero-meta{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px 14px;font-family:var(--mono);font-size:13px;}
+  .hero-meta a{color:var(--ink);text-decoration:none;border:1px solid rgba(99,102,241,.4);padding:8px 14px;border-radius:999px;transition:all .2s;}
+  .hero-meta a:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+  .hero-rule{margin-top:46px;height:1px;background:linear-gradient(90deg,var(--gold),transparent);}
+  .hero-index{margin-top:22px;display:flex;flex-direction:column;gap:10px;font-family:var(--mono);font-size:13px;color:var(--muted);}
+  .hero-index a{text-decoration:none;color:var(--muted);transition:color .2s;}
+  .hero-index a:hover{color:var(--gold);}
+  .hero-index b{color:var(--ink);font-weight:500;}
+
+  /* about */
+  section.about{padding:64px 0 8px;}
+  section.about p{font-size:1.18rem;max-width:64ch;color:#33403A;}
+  .lead-label{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:18px;}
+
+  /* cases */
+  .cases{padding:40px 0 20px;}
+  .case{padding:56px 0;border-top:1px solid var(--line);}
+  .case-tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--evergreen);background:rgba(99,102,241,.16);padding:5px 11px;border-radius:5px;display:inline-block;}
+  .case h3{font-family:var(--display);font-weight:600;font-size:clamp(1.9rem,3.6vw,2.6rem);letter-spacing:-.01em;margin:16px 0 0;}
+  .case .tagline{margin:8px 0 0;color:var(--muted);font-size:1.1rem;max-width:60ch;}
+
+  .specs{margin:28px 0 4px;border:1px solid var(--line);border-radius:12px;background:var(--paper);overflow:hidden;}
+  .spec-row{display:grid;grid-template-columns:128px 1fr;border-top:1px solid var(--line);}
+  .spec-row:first-child{border-top:none;}
+  .spec-row dt{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:13px 16px;background:#FBFAF7;}
+  .spec-row dd{margin:0;padding:13px 16px;font-size:.95rem;font-family:var(--mono);line-height:1.55;}
+  .spec-row dd a{color:var(--gold-deep);text-decoration:none;border-bottom:1px solid rgba(168,126,80,.4);}
+  .spec-row dd a:hover{color:var(--evergreen);}
+  @media(max-width:560px){.spec-row{grid-template-columns:100px 1fr;}}
+
+  .block{margin-top:34px;}
+  .block > h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);margin:0 0 12px;font-weight:500;}
+  .block p{margin:0 0 12px;max-width:66ch;color:#2C3833;}
+  .block p:last-child{margin-bottom:0;}
+
+  /* decisions (PM thinking) */
+  .decisions{display:grid;gap:16px;}
+  .decision{border-left:2px solid var(--gold);padding:1px 0 1px 18px;max-width:68ch;}
+  .decision .d{font-weight:600;color:var(--ink);}
+  .decision .why{color:var(--muted);font-size:.96rem;margin-top:4px;}
+
+  /* architecture flow */
+  .flow{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:4px 0 0;}
+  .flow .node{font-family:var(--mono);font-size:12.5px;background:var(--indigo-tint);color:var(--gold-deep);border:1px solid rgba(99,102,241,.28);padding:8px 13px;border-radius:7px;white-space:nowrap;}
+  .flow .sep{color:var(--gold);font-weight:600;font-size:15px;}
+
+  /* component breakdown */
+  .components{display:grid;gap:0;margin-top:18px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);}
+  .comp{display:grid;grid-template-columns:178px 1fr;gap:16px;padding:14px 16px;border-top:1px solid var(--line);font-size:.95rem;}
+  .comp:first-child{border-top:none;}
+  .comp .cname{font-family:var(--mono);font-size:12.5px;color:var(--evergreen);font-weight:500;}
+  .comp .cdesc{color:#2C3833;}
+  @media(max-width:560px){.comp{grid-template-columns:1fr;gap:4px;}}
+
+  /* stack detail */
+  .stack{display:grid;gap:0;margin-top:6px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);}
+  .st{display:grid;grid-template-columns:200px 1fr;gap:16px;padding:13px 16px;border-top:1px solid var(--line);font-size:.93rem;}
+  .st:first-child{border-top:none;}
+  .st .sk{font-family:var(--mono);font-size:12.5px;color:var(--gold-deep);font-weight:500;}
+  .st .sv{color:#2C3833;}
+  @media(max-width:560px){.st{grid-template-columns:1fr;gap:3px;}}
+
+  /* metrics */
+  .out{display:flex;flex-wrap:wrap;gap:14px;margin-top:4px;}
+  .metric{border:1px solid var(--line);border-radius:10px;padding:14px 18px;background:var(--paper);min-width:120px;}
+  .metric .n{font-family:var(--display);font-weight:600;font-size:1.5rem;color:var(--evergreen);line-height:1;}
+  .metric .l{font-size:.82rem;color:var(--muted);margin-top:6px;}
+
+  /* role note */
+  .note{margin-top:24px;background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.32);border-radius:10px;padding:14px 18px;font-size:.95rem;color:#33403A;max-width:68ch;}
+  .note b{color:var(--evergreen);}
+
+  /* skills */
+  section.skills{padding:56px 0;border-top:1px solid var(--line);}
+  .skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px;margin-top:24px;}
+  .skill-card h5{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);margin:0 0 10px;}
+  .skill-card p{margin:0;font-size:.95rem;color:#33403A;}
+
+  /* footer */
+  footer{background:var(--indigo-tint);color:var(--ink);padding:66px 0 40px;border-top:1px solid var(--line);}
+  footer h2{font-family:var(--display);font-weight:600;font-size:clamp(1.8rem,4vw,2.6rem);margin:0;letter-spacing:-.01em;}
+  footer .foot-links{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px;font-family:var(--mono);font-size:13.5px;}
+  footer .foot-links a{color:var(--ink);text-decoration:none;border:1px solid rgba(99,102,241,.4);padding:9px 16px;border-radius:999px;transition:all .2s;}
+  footer .foot-links a:hover{background:var(--gold);color:#fff;}
+  footer .copy{margin-top:40px;font-family:var(--mono);font-size:12px;color:var(--muted);}
+
+  .reveal{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+  a:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">SWATI&nbsp;CHAUHAN <b>// AI&nbsp;PM</b></span>
+    <div class="links">
+      <a href="#nestly">Nestly</a><a href="#flamerewards">FlameRewards</a><a href="#pawconnect">PawConnect</a><a href="#stride">STRIDE</a><a href="#trustlane">TrustLane</a><a href="#interviewiq">InterviewIQ</a><a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Senior Product Manager · AI &amp; Agentic Systems</p>
+    <h1>I build and ship <span class="light">agentic AI products</span>, end to end.</h1>
+    <p class="hero-sub">6+ years as a product manager — from production GenAI at platform scale to live multi-agent systems I design, build, and deploy myself. Below are six, in depth: the product thinking, the architecture, the stack, and the results.</p>
+    <div class="hero-meta">
+      <a href="mailto:swatic0704@gmail.com">✦ swatic0704@gmail.com</a>
+      <a href="https://www.linkedin.com/in/swati-chauhan07/" target="_blank" rel="noopener">↗ LinkedIn</a>
+      <a href="https://github.com/swati070495" target="_blank" rel="noopener">↗ GitHub</a>
+    </div>
+    <div class="hero-rule"></div>
+    <div class="hero-index">
+      <a href="#nestly"><b>Nestly</b> — AI interior-design platform · live · custom MCP server</a>
+      <a href="#flamerewards"><b>FlameRewards</b> — GenUI QSR loyalty concept · hackathon winner</a>
+      <a href="#pawconnect"><b>PawConnect</b> — agentic volunteering assistant · 3-agent LangGraph system</a>
+      <a href="#stride"><b>STRIDE</b> — autonomous shopping agent · x402 machine-to-machine payments</a>
+      <a href="#trustlane"><b>TrustLane</b> — agent-identity & trust layer for booking platforms · co-built</a>
+      <a href="#interviewiq"><b>InterviewIQ</b> — AI interview-prep platform · product &amp; system design</a>
+    </div>
+  </div>
+</header>
+
+<section class="about wrap reveal">
+  <p class="lead-label">About</p>
+  <p>I'm a product manager who builds the thing, not just specs it. At Albertsons I shipped the loyalty platform's first agentic AI experience and an enterprise GenAI conversational search engine. On my own time I design, build, and deploy multi-agent systems end to end — RAG pipelines, agent memory, reasoning loops, a custom MCP server, and autonomous on-chain payments. Each case study below is the real work: the decisions I made, how the system is wired, and what shipped.</p>
+</section>
+
+<div class="cases wrap">
+
+  <!-- ============ NESTLY ============ -->
+  <article class="case reveal" id="nestly">
+    <span class="case-tag">Live Product · Solo Build</span>
+    <h3>Nestly</h3>
+    <p class="tagline">An AI interior-design platform that turns a single room photo into an editorial-quality, fully shoppable redesign.</p>
+
+    <dl class="specs">
+      <div class="spec-row"><dt>Role</dt><dd>Solo — problem definition, UX, full generation funnel, MCP server</dd></div>
+      <div class="spec-row"><dt>Stack</dt><dd>Next.js / React · Claude · OpenAI gpt-image-1 · Supabase (pgvector, Auth, Storage) · Vercel</dd></div>
+      <div class="spec-row"><dt>Status</dt><dd>Live in production</dd></div>
+      <div class="spec-row"><dt>Links</dt><dd><a href="https://nestly-omega.vercel.app" target="_blank" rel="noopener">nestly-omega.vercel.app ↗</a></dd></div>
+    </dl>
+
+    <div class="block">
+      <h4>Context</h4>
+      <p>Redesigning a room is hard to picture and harder to shop. Existing tools split the problem in two: image generators make pretty rooms you can't actually buy, and retail catalogs sell products with no design vision. The gap is a tool that does both — produces a redesign with real design taste, and the shoppable products to build it, personalized to a person's style and budget.</p>
+    </div>
+
+    <div class="block">
+      <h4>Product decisions</h4>
+      <div class="decisions">
+        <div class="decision"><div class="d">Treat output quality as the core product risk.</div><div class="why">One off-brand image breaks trust in an AI design tool, so I built a dedicated quality-control stage into the pipeline — the model has to pass its own QC before a result reaches the user. Output consistency across 22 moods and 15 room types was the bar, not raw generation.</div></div>
+        <div class="decision"><div class="d">Make it shoppable, not just pretty.</div><div class="why">The redesign and the commerce are one flow: click-to-shop product cards routed by budget tier across partner retailers. Design vision and "buy it now" live on the same screen.</div></div>
+        <div class="decision"><div class="d">Gate generation to convert.</div><div class="why">Anonymous visitors get one free generation, then sign in for more. The funnel is tuned to turn first-time curiosity into accounts without killing the first taste of the product.</div></div>
+        <div class="decision"><div class="d">Ground the model in real design taste.</div><div class="why">I built a ~339-chunk RAG corpus from design editorial so outputs reflect actual design principles — palette, materials, proportion — instead of generic LLM aesthetics.</div></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>How it works — 6-agent RAG pipeline</h4>
+      <div class="flow">
+        <span class="node">Retrieval</span><span class="sep">›</span>
+        <span class="node">Vision analysis</span><span class="sep">›</span>
+        <span class="node">Design strategy</span><span class="sep">›</span>
+        <span class="node">Prompt engineering</span><span class="sep">›</span>
+        <span class="node">Image · gpt-image-1</span><span class="sep">›</span>
+        <span class="node">Quality control</span>
+      </div>
+      <div class="components">
+        <div class="comp"><span class="cname">Retrieval</span><span class="cdesc">Pulls relevant design references from the pgvector corpus to ground the redesign in real editorial.</span></div>
+        <div class="comp"><span class="cname">Vision analysis</span><span class="cdesc">Reads the uploaded room photo — layout, lighting, existing pieces — to anchor the redesign to the actual space.</span></div>
+        <div class="comp"><span class="cname">Design strategy</span><span class="cdesc">Chooses palette, materials, and mood for the redesign from the retrieved references and the user's chosen style.</span></div>
+        <div class="comp"><span class="cname">Prompt engineering</span><span class="cdesc">Composes the image-generation prompt from the strategy and references, so the render is on-brief.</span></div>
+        <div class="comp"><span class="cname">Image generation</span><span class="cdesc">OpenAI gpt-image-1 renders the photorealistic redesign (upgraded from DALL·E 3 for fidelity).</span></div>
+        <div class="comp"><span class="cname">Quality control</span><span class="cdesc">Checks the output stays on-brand and on-spec before it's returned — the trust gate of the whole pipeline.</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>The MCP server</h4>
+      <p>I built a custom MCP (Model Context Protocol) server that exposes the design knowledge base to an AI agent as five callable tools, so the agent reasons with structured, authoritative domain knowledge instead of guessing.</p>
+      <div class="components">
+        <div class="comp"><span class="cname">get_style_guide</span><span class="cdesc">Detailed info on 10 design styles — materials, palettes, retailers, price anchors, trend notes.</span></div>
+        <div class="comp"><span class="cname">get_design_principles</span><span class="cdesc">Eight core rules (60-30-10 color, rule of three, focal point, scale, lighting, negative space, texture, traffic flow).</span></div>
+        <div class="comp"><span class="cname">generate_product_queries</span><span class="cdesc">Builds retailer-optimized, budget-aware search queries (specific 5–8 word queries instead of vague 2–4 word ones).</span></div>
+        <div class="comp"><span class="cname">blend_styles</span><span class="cdesc">Advises on mixing two or more styles — shared materials, combined palettes, dominant-vs-accent strategy.</span></div>
+        <div class="comp"><span class="cname">search_design_editorial</span><span class="cdesc">Points to results across Dezeen, AD, Elle Decor, Apartment Therapy, House Beautiful.</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>Stack</h4>
+      <div class="stack">
+        <div class="st"><span class="sk">Frontend / deploy</span><span class="sv">Next.js / React, deployed on Vercel</span></div>
+        <div class="st"><span class="sk">Orchestration</span><span class="sv">Claude — reasoning across the six pipeline agents</span></div>
+        <div class="st"><span class="sk">Image generation</span><span class="sv">OpenAI gpt-image-1</span></div>
+        <div class="st"><span class="sk">Data / RAG</span><span class="sv">Supabase pgvector — ~339-chunk design corpus; Auth for the gated funnel; Storage for shareable outputs</span></div>
+        <div class="st"><span class="sk">Agent tooling</span><span class="sv">Custom MCP server exposing five domain tools</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>Outcome</h4>
+      <div class="out">
+        <div class="metric"><div class="n">Live</div><div class="l">Shipped &amp; deployed</div></div>
+        <div class="metric"><div class="n">22 × 15</div><div class="l">Moods × room types, on-brand</div></div>
+        <div class="metric"><div class="n">5 tools</div><div class="l">Custom MCP server</div></div>
+        <div class="metric"><div class="n">~339</div><div class="l">RAG corpus chunks</div></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ FLAMEREWARDS ============ -->
+  <article class="case reveal" id="flamerewards">
+    <span class="case-tag">Hackathon Winner · Flutter SF × Very Good Ventures GenUI</span>
+    <h3>FlameRewards</h3>
+    <p class="tagline">A QSR loyalty concept where a 5-agent system composes each member's quests and challenge screens as generative UI, rendered fresh at runtime instead of fixed layouts.</p>
+
+    <dl class="specs">
+      <div class="spec-row"><dt>Role</dt><dd>Solo — built and pitched as the only PM in the room</dd></div>
+      <div class="spec-row"><dt>Stack</dt><dd>Flutter (Dart) · GenUI SDK · Featherless AI — Qwen2.5-72B-Instruct · Supabase (PostgreSQL)</dd></div>
+      <div class="spec-row"><dt>Status</dt><dd>Hackathon winner</dd></div>
+      <div class="spec-row"><dt>Built at</dt><dd>Flutter SF × Very Good Ventures GenUI Hackathon</dd></div>
+    </dl>
+
+    <div class="block">
+      <h4>Context</h4>
+      <p>QSR loyalty is one-size-fits-all — every member sees the same static points, offers, and challenges. FlameRewards reimagines a McDonald's-style loyalty app where the experience itself is personalized: instead of fixed screens, a multi-agent system generates each member's quests and challenge cards on the fly, tuned to how they actually order.</p>
+    </div>
+
+    <div class="block">
+      <h4>Product decisions</h4>
+      <div class="decisions">
+        <div class="decision"><div class="d">Personalize the interface, not just the content.</div><div class="why">Most "personalization" swaps which offer shows inside a fixed layout. The generative-UI bet is bigger: let the model compose the screen itself, which quest, framed how, with what challenge, so the UI adapts to the member instead of the member adapting to the UI.</div></div>
+        <div class="decision"><div class="d">Solve cold start before solving personalization.</div><div class="why">A new member has no order history to personalize from, so I designed cohort borrowing, using behavior patterns from similar members, as the fallback until the system has enough of their own data to switch to direct collaborative filtering.</div></div>
+        <div class="decision"><div class="d">Never let an LLM call be a single point of failure.</div><div class="why">This was live and demoed, so every LLM call has a deterministic fallback. If generation fails or times out, the member still gets a coherent, on-brand screen instead of a broken one. Reliability was as much the product as personalization was.</div></div>
+        <div class="decision"><div class="d">Keep the model to two calls per session.</div><div class="why">A Quest Agent and a Cold Start Agent cover the experience, keeping latency and cost predictable instead of chaining calls per widget.</div></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>How it works — 5-agent system</h4>
+      <div class="flow">
+        <span class="node">Behavior data</span><span class="sep">›</span>
+        <span class="node">Cold Start / Quest Agent</span><span class="sep">›</span>
+        <span class="node">Qwen2.5-72B via Featherless</span><span class="sep">›</span>
+        <span class="node">GenUI SDK</span><span class="sep">›</span>
+        <span class="node">Rendered in Flutter</span>
+      </div>
+      <div class="components">
+        <div class="comp"><span class="cname">Cold Start Agent</span><span class="cdesc">Builds a starting experience for new members via cohort borrowing when there's no order history yet.</span></div>
+        <div class="comp"><span class="cname">Quest Agent</span><span class="cdesc">Composes each member's quests and challenges once enough behavioral data exists.</span></div>
+        <div class="comp"><span class="cname">Collaborative filtering</span><span class="cdesc">Reads the behavior_patterns table to match members to relevant quests based on similar members' activity.</span></div>
+        <div class="comp"><span class="cname">GenUI SDK</span><span class="cdesc">Takes the model's output and composes it into a live widget tree from an 8-widget custom catalog, not a static template.</span></div>
+        <div class="comp"><span class="cname">Deterministic fallback</span><span class="cdesc">Wraps every LLM call so a failed or slow generation still renders a coherent screen.</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>Stack</h4>
+      <div class="stack">
+        <div class="st"><span class="sk">Frontend</span><span class="sv">Flutter (Dart, Web) with 8 custom GenUI catalog widgets</span></div>
+        <div class="st"><span class="sk">UI generation</span><span class="sv">GenUI SDK — runtime widget composition from model output</span></div>
+        <div class="st"><span class="sk">LLM inference</span><span class="sv">Featherless AI, running Qwen2.5-72B-Instruct via an OpenAI-compatible API (openai_dart)</span></div>
+        <div class="st"><span class="sk">Data</span><span class="sv">Supabase (PostgreSQL) — 5 tables: users, order_history, bonus_paths, behavior_patterns, play_earn_events, with parallel query batching</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>Outcome</h4>
+      <div class="out">
+        <div class="metric"><div class="n">Winner</div><div class="l">Solo, only PM in the room</div></div>
+        <div class="metric"><div class="n">5 agents</div><div class="l">Cold start + quest generation</div></div>
+        <div class="metric"><div class="n">2 calls</div><div class="l">LLM calls per session</div></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ PAWCONNECT ============ -->
+  <article class="case reveal" id="pawconnect">
+    <span class="case-tag">Stanford Agentic AI · Capstone</span>
+    <h3>PawConnect</h3>
+    <p class="tagline">An AI assistant that matches people to local animal-volunteering and fostering opportunities — scoped, built, and shipped in a 48-hour window.</p>
+
+    <dl class="specs">
+      <div class="spec-row"><dt>Role</dt><dd>Solo — directed the architecture and shipped end to end</dd></div>
+      <div class="spec-row"><dt>Timeline</dt><dd>48-hour build</dd></div>
+      <div class="spec-row"><dt>Stack</dt><dd>Python · LangGraph · Claude Sonnet · Supabase (pgvector) · text-embedding-3-small · Streamlit</dd></div>
+      <div class="spec-row"><dt>Status</dt><dd>Live · 37 tests passing (32 unit + 5 e2e)</dd></div>
+      <div class="spec-row"><dt>Links</dt><dd><a href="https://pawconnect-cail6esab3ikryathn9pf9.streamlit.app" target="_blank" rel="noopener">Live Demo ↗</a> &nbsp;·&nbsp; <a href="https://github.com/swati070495/pawconnect" target="_blank" rel="noopener">GitHub ↗</a></dd></div>
+    </dl>
+
+    <div class="block">
+      <h4>Context</h4>
+      <p>There's no single source of truth for local animal-volunteering and fostering opportunities — the information is scattered across shelters, each with its own site and format. I scoped the problem from a real user persona and owned it from there: someone who wants to help but can't easily find where, how, or whether they're a fit.</p>
+    </div>
+
+    <div class="block">
+      <h4>Product decisions</h4>
+      <div class="decisions">
+        <div class="decision"><div class="d">Separate the domain into three agents instead of one.</div><div class="why">Data, volunteering, and fostering are distinct intents with distinct logic. Splitting them gave cleaner intent routing and higher accuracy than a single agent trying to do everything — and made each part testable in isolation.</div></div>
+        <div class="decision"><div class="d">Invest in retrieval quality over breadth.</div><div class="why">A wrong match erodes trust fast in a matching product, so I tuned the chunking strategy and added a re-ranking pass to push relevance to 0.95–0.97 rather than chasing a bigger, noisier index.</div></div>
+        <div class="decision"><div class="d">Build trust and safety guardrails in from the start.</div><div class="why">Matching volunteers and foster homes to animals needs rails, not just relevance — so the system enforces a no-show policy and foster-return logic, blocking matches that fail those checks.</div></div>
+        <div class="decision"><div class="d">Pivot the data source to protect the timeline.</div><div class="why">When the Petfinder API was discontinued mid-build, I made the call to pivot to a curated 20-shelter dataset rather than chase a blocked integration — keeping a tested product shipping inside the 48-hour window. Prioritization under a hard constraint.</div></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>How it works — 3-agent LangGraph system</h4>
+      <div class="flow">
+        <span class="node">Intent routing</span><span class="sep">›</span>
+        <span class="node">Data agent</span><span class="sep">·</span>
+        <span class="node">Volunteering agent</span><span class="sep">·</span>
+        <span class="node">Fostering agent</span>
+      </div>
+      <div class="components">
+        <div class="comp"><span class="cname">Orchestrator</span><span class="cdesc">Routes each request to the right agent by detected intent (LangGraph manages multi-agent state).</span></div>
+        <div class="comp"><span class="cname">Data agent</span><span class="cdesc">Ingests and serves the shelter dataset — the system's source of truth.</span></div>
+        <div class="comp"><span class="cname">Volunteering agent</span><span class="cdesc">Matches a person to local volunteering opportunities based on intent and context.</span></div>
+        <div class="comp"><span class="cname">Fostering agent</span><span class="cdesc">Matches fostering requests, applying the foster-return safety guardrail.</span></div>
+        <div class="comp"><span class="cname">Reasoning + memory</span><span class="cdesc">Plan-and-Execute + ReAct + Tree-of-Thoughts reasoning over a CoALA memory framework.</span></div>
+        <div class="comp"><span class="cname">Retrieval</span><span class="cdesc">88 chunks in Supabase pgvector (256/512-char strategy), text-embedding-3-small, re-ranked with Claude Sonnet.</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>Stack</h4>
+      <div class="stack">
+        <div class="st"><span class="sk">Orchestration</span><span class="sv">LangGraph — 3 agents + orchestrator, intent-based routing</span></div>
+        <div class="st"><span class="sk">Reasoning</span><span class="sv">Plan-and-Execute · ReAct · Tree of Thoughts · CoALA memory</span></div>
+        <div class="st"><span class="sk">Retrieval</span><span class="sv">Supabase pgvector (88 chunks), text-embedding-3-small, Claude Sonnet re-ranking</span></div>
+        <div class="st"><span class="sk">UI / deploy</span><span class="sv">Streamlit on Streamlit Cloud</span></div>
+        <div class="st"><span class="sk">Quality</span><span class="sv">37 tests — 32 unit + 5 end-to-end (pytest)</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>Outcome</h4>
+      <div class="out">
+        <div class="metric"><div class="n">0.95–0.97</div><div class="l">Match relevance</div></div>
+        <div class="metric"><div class="n">37</div><div class="l">Tests passing</div></div>
+        <div class="metric"><div class="n">48 hrs</div><div class="l">Scoped to shipped</div></div>
+        <div class="metric"><div class="n">Live</div><div class="l">Deployed on Streamlit</div></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ STRIDE ============ -->
+  <article class="case reveal" id="stride">
+    <span class="case-tag">Internet of Agents Hackathon · AGI House × Coframe</span>
+    <h3>STRIDE</h3>
+    <p class="tagline">An autonomous shopping agent that closes the gap between recommending and buying — and can be trusted to spend.</p>
+
+    <dl class="specs">
+      <div class="spec-row"><dt>Role</dt><dd>Co-built — I owned the trust &amp; control layer and the user experience</dd></div>
+      <div class="spec-row"><dt>Stack</dt><dd>Python · x402 / Base Sepolia (USDC) · Claude Sonnet · Streamlit · FastAPI</dd></div>
+      <div class="spec-row"><dt>Status</dt><dd>Working prototype</dd></div>
+      <div class="spec-row"><dt>Built at</dt><dd>Internet of Agents Hackathon (AGI House × Coframe)</dd></div>
+    </dl>
+
+    <div class="block">
+      <h4>Context</h4>
+      <p>AI can recommend products but can't buy them, and most shopping agents are stateless — no memory across sessions, no learning, and no safe way to let them transact. STRIDE is an agent that remembers a user's preferences, learns what works, and completes purchases autonomously within limits the user sets.</p>
+    </div>
+
+    <div class="note"><b>My role:</b> STRIDE was co-built at a hackathon. I owned the <b>trust &amp; control layer</b> (permissions and payments) and the <b>onboarding-to-results experience</b> — the parts that make an autonomous spending agent safe and legible. The sections below focus on what I owned, with the wider system described for context.</div>
+
+    <div class="block">
+      <h4>Product decisions (what I owned)</h4>
+      <div class="decisions">
+        <div class="decision"><div class="d">Make autonomous spending safe by design.</div><div class="why">For an agent that spends real money, trust <em>is</em> the product. I designed scoped, non-escalatable permissions set at onboarding — approved sites, spend ceiling, categories — that no agent can override mid-session, plus always-visible Pause / Approve / Override controls.</div></div>
+        <div class="decision"><div class="d">Pay machine-to-machine, never expose a card.</div><div class="why">Payments run agent-to-merchant over the x402 protocol — real USDC transfers on Base Sepolia (EIP-3009) — so a purchase completes without a human card ever entering the loop.</div></div>
+        <div class="decision"><div class="d">Make the agent legible, not a black box.</div><div class="why">I designed the experience so users can see the agent's live reasoning and watch its results improve, rather than trusting a silent process — the observability is what earns the permission to act.</div></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>The trust &amp; control layer</h4>
+      <div class="flow">
+        <span class="node">Scoped permissions</span><span class="sep">·</span>
+        <span class="node">Pause / Approve / Override</span><span class="sep">·</span>
+        <span class="node">x402 machine-to-machine payments</span>
+      </div>
+      <div class="components">
+        <div class="comp"><span class="cname">Auth (permissions)</span><span class="cdesc">Issues a scoped credential at session start defining exactly what the agent may do — approved sites, spend ceiling, categories. No agent can escalate mid-session.</span></div>
+        <div class="comp"><span class="cname">Controls</span><span class="cdesc">Always-visible Pause / Approve / Override — the human stays in the loop on every autonomous action.</span></div>
+        <div class="comp"><span class="cname">Payments</span><span class="cdesc">x402 HTTP-402 flow: real USDC transfers on Base Sepolia (EIP-3009), settled machine-to-machine and verifiable on-chain, with no card exposed.</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>The experience I designed</h4>
+      <p>A Streamlit app in three screens: a five-question onboarding that captures the user's preferences and limits; a live run view that streams the agent's reasoning as it works; and a results view that shows what it did and the payment confirmation. The whole flow is built so the user can see, pause, or override at any point.</p>
+    </div>
+
+    <div class="block">
+      <h4>The wider system (co-built, for context)</h4>
+      <p>Beyond the trust layer, STRIDE runs a multi-agent loop: a memory layer that persists preferences across sessions, a shopping agent that reads live retail pages and reasons over them, a reflexion step that writes plain-English lessons after each run, and a reinforcement-learning loop that converges on the best strategy for each user over a handful of runs.</p>
+    </div>
+
+    <div class="block">
+      <h4>Stack</h4>
+      <div class="stack">
+        <div class="st"><span class="sk">Payments (mine)</span><span class="sv">x402 SDK · Base Sepolia testnet · USDC (EIP-3009) · eth-account · FastAPI checkout server</span></div>
+        <div class="st"><span class="sk">Experience (mine)</span><span class="sv">Streamlit — onboarding, live run view, results</span></div>
+        <div class="st"><span class="sk">Reasoning</span><span class="sv">Claude Sonnet — shopping agent (ReAct loop)</span></div>
+        <div class="st"><span class="sk">Web reading</span><span class="sv">Jina.ai Reader — live pages to structured markdown</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>Outcome</h4>
+      <div class="out">
+        <div class="metric"><div class="n">Autonomous</div><div class="l">Purchase within guardrails</div></div>
+        <div class="metric"><div class="n">x402</div><div class="l">M2M payments, no card exposed</div></div>
+        <div class="metric"><div class="n">Legible</div><div class="l">Live reasoning shown to user</div></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ TRUSTLANE ============ -->
+  <article class="case reveal" id="trustlane">
+    <span class="case-tag">Hackathon · AGI House × 1Password Agent Identity</span>
+    <h3>TrustLane</h3>
+    <p class="tagline">Agent-identity and fraud infrastructure for booking platforms — a trust layer that sits between AI agents and payment systems, scoring every action before money moves.</p>
+
+    <dl class="specs">
+      <div class="spec-row"><dt>Role</dt><dd>Co-built — team of two</dd></div>
+      <div class="spec-row"><dt>Stack</dt><dd>Python · Claude Sonnet (tool_use) · 1Password SDK · FastAPI · HMAC · pytest</dd></div>
+      <div class="spec-row"><dt>Status</dt><dd>Working prototype · 29 tests</dd></div>
+      <div class="spec-row"><dt>Built at</dt><dd>AGI House × 1Password Agent Identity Hackathon</dd></div>
+      <div class="spec-row"><dt>Links</dt><dd><a href="https://github.com/rohitmujumdar/trustlane" target="_blank" rel="noopener">GitHub ↗</a></dd></div>
+    </dl>
+
+    <div class="note"><b>My role:</b> TrustLane was co-built as a team of two with Rohit — we built it together across the agent pipeline, the trust model, and the console.</div>
+
+    <div class="block">
+      <h4>Context</h4>
+      <p>AI agents are starting to book and pay on people's behalf, but the platforms they transact with have no way to know whether an agent is in-scope, uncompromised, and safe to trust with a credential. TrustLane is the B2B trust and identity layer that sits between agents and payments: it scores every agent action and releases a scoped credential only when that action clears.</p>
+    </div>
+
+    <div class="block">
+      <h4>Product decisions</h4>
+      <div class="decisions">
+        <div class="decision"><div class="d">Rule-based scoring, not an LLM judge.</div><div class="why">The thing deciding whether money can move has to be deterministic and auditable, so trust is scored by explicit signals and weights, not another model. It's safe to run live and every decision can be explained.</div></div>
+        <div class="decision"><div class="d">Score per agent, not one universal score.</div><div class="why">A read-only search agent and a money-moving payment agent carry very different risk, so each agent type is scored on differently weighted signals — the payment agent is weighted hardest on source trust and budget conformance.</div></div>
+        <div class="decision"><div class="d">Decay trust across delegation hops.</div><div class="why">The deeper an action is delegated agent-to-agent, the less it should be trusted. Trust decays each hop (1.0 to 0.9 to 0.8 and down) and past a few hops can never auto-approve, modeling the real risk of long delegation chains.</div></div>
+        <div class="decision"><div class="d">Scope credentials to a single use.</div><div class="why">When an action clears, the released credential is bound to one merchant, one amount, and a 30-second lifetime, and can't be re-delegated. The secret never even loads into memory on a block or review. Least privilege, enforced.</div></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>How it works — 6-agent system</h4>
+      <div class="flow">
+        <span class="node">Orchestrator</span><span class="sep">›</span>
+        <span class="node">Search</span><span class="sep">›</span>
+        <span class="node">Booking</span><span class="sep">›</span>
+        <span class="node">Payment</span><span class="sep">·</span>
+        <span class="node">Delegation</span><span class="sep">·</span>
+        <span class="node">Trust Arbiter</span>
+      </div>
+      <div class="components">
+        <div class="comp"><span class="cname">Orchestrator</span><span class="cdesc">Routes tasks to the right sub-agent.</span></div>
+        <div class="comp"><span class="cname">Search agent</span><span class="cdesc">Browses inventory, read-only — lowest scrutiny.</span></div>
+        <div class="comp"><span class="cname">Booking agent</span><span class="cdesc">Reserves listings, requires a credential.</span></div>
+        <div class="comp"><span class="cname">Payment agent</span><span class="cdesc">Moves money, held to the highest scrutiny.</span></div>
+        <div class="comp"><span class="cname">Delegation agent</span><span class="cdesc">Validates HMAC-signed delegation tokens.</span></div>
+        <div class="comp"><span class="cname">Trust Arbiter</span><span class="cdesc">Scores every action and holds final authority to approve, review, or block.</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>The trust model</h4>
+      <div class="components">
+        <div class="comp"><span class="cname">5 signals</span><span class="cdesc">Source trust, scope conformance, budget conformance, vendor allowlist, identity validity — weighted per agent type.</span></div>
+        <div class="comp"><span class="cname">Hard caps</span><span class="cdesc">A detected injection forces a review; a missing delegation forces a block — regardless of score.</span></div>
+        <div class="comp"><span class="cname">Trust decay</span><span class="cdesc">Score drops each delegation hop; hop 4+ can never auto-approve.</span></div>
+        <div class="comp"><span class="cname">Self-learning reputation</span><span class="cdesc">Agents earn or lose trust from outcomes (plus on success, minus on error), feeding back as a multiplier.</span></div>
+        <div class="comp"><span class="cname">Scoped credentials</span><span class="cdesc">1Password-backed: one merchant, one amount, 30-second lifetime, non-delegatable.</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>The demo</h4>
+      <p>A three-column console shows the whole flow live: inbound agent operations on the left, the user's phone (what the person sees) in the center, and outbound agent operations on the right. A real Claude Sonnet agent with tool_use can run any city and any request through the full trust pipeline, with a deterministic replay mode for demo safety.</p>
+    </div>
+
+    <div class="block">
+      <h4>Stack</h4>
+      <div class="stack">
+        <div class="st"><span class="sk">Core engine</span><span class="sv">Python — rule-based scoring, zero framework dependencies</span></div>
+        <div class="st"><span class="sk">Live agent</span><span class="sv">Claude Sonnet (Anthropic SDK) with tool_use</span></div>
+        <div class="st"><span class="sk">Credentials</span><span class="sv">1Password SDK — scoped, single-use credential vault</span></div>
+        <div class="st"><span class="sk">Delegation</span><span class="sv">HMAC-signed delegation tokens (stdlib)</span></div>
+        <div class="st"><span class="sk">Interfaces</span><span class="sv">FastAPI plus a single-file HTML/CSS/JS console</span></div>
+        <div class="st"><span class="sk">Quality</span><span class="sv">29 tests (pytest)</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>Outcome</h4>
+      <div class="out">
+        <div class="metric"><div class="n">6 agents</div><div class="l">Full trust pipeline</div></div>
+        <div class="metric"><div class="n">Rule-based</div><div class="l">Deterministic, auditable scoring</div></div>
+        <div class="metric"><div class="n">29</div><div class="l">Tests passing</div></div>
+      </div>
+    </div>
+  </article>
+
+  <!-- ============ INTERVIEWIQ ============ -->
+  <article class="case reveal" id="interviewiq">
+    <span class="case-tag">Product &amp; System Design · Phase 1</span>
+    <h3>InterviewIQ</h3>
+    <p class="tagline">An AI interview-prep platform — role- and JD-tailored mock interviews with structured, STAR-based feedback. This case study is the Phase 1 product definition and system design.</p>
+
+    <dl class="specs">
+      <div class="spec-row"><dt>Role</dt><dd>Product lead — scope, architecture, data &amp; privacy strategy, cost modeling</dd></div>
+      <div class="spec-row"><dt>Deliverable</dt><dd>Phase 1 PRD + system design (architecture, data strategy, cost analysis)</dd></div>
+      <div class="spec-row"><dt>LLM approach</dt><dd>Hosted GPT for Phase 1, with a self-hosting path mapped for later</dd></div>
+      <div class="spec-row"><dt>Status</dt><dd>Phase 1 spec</dd></div>
+    </dl>
+
+    <div class="block">
+      <h4>Context</h4>
+      <p>Interview prep is generic — candidates rehearse canned questions with no tailoring to the role or the specific job, and no structured feedback on how they answered. InterviewIQ generates role- and JD-specific mock interviews and scores each answer against the STAR framework, so practice maps to the job a candidate is actually targeting.</p>
+    </div>
+
+    <div class="block">
+      <h4>Phase 1 scope</h4>
+      <div class="components">
+        <div class="comp"><span class="cname">Onboarding</span><span class="cdesc">Minimal profile (role, industry, experience) with email or Google/LinkedIn OAuth.</span></div>
+        <div class="comp"><span class="cname">Mock interview</span><span class="cdesc">LLM generates role/industry-specific questions and chains follow-ups via session memory; a STAR hint sits above each question.</span></div>
+        <div class="comp"><span class="cname">JD "lite" analyzer</span><span class="cdesc">Paste a job description; the LLM extracts 3–5 core competencies and crafts one tailored question per competency.</span></div>
+        <div class="comp"><span class="cname">Feedback engine</span><span class="cdesc">A "critic" prompt scores STAR adherence 1–5 and returns top strengths and gaps.</span></div>
+        <div class="comp"><span class="cname">Progress tracker</span><span class="cdesc">Recent sessions, average score, and an improvement indicator across attempts.</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>Product decisions</h4>
+      <div class="decisions">
+        <div class="decision"><div class="d">Start hosted, self-host later.</div><div class="why">Phase 1 ships on hosted GPT for speed to market; self-hosting is deferred until product–market fit justifies the infra and engineering cost. I mapped the full trade-off across time-to-market, cost, scalability, ops, customization, latency, privacy, and model freshness so the future migration is a deliberate call.</div></div>
+        <div class="decision"><div class="d">Use RAG to anchor questions in reality.</div><div class="why">Instead of zero-shot JD parsing, retrieve similar real-world JDs and the questions companies actually ask — cutting hallucination and surfacing real interview patterns. The same retrieval pattern powers company-specific prep, personalized coaching snippets, resume-augmented prompting, and a resource recommender.</div></div>
+        <div class="decision"><div class="d">Privacy by design.</div><div class="why">Resumes, transcripts, and identifiers are sensitive, so optional data is deferred until opt-in; everything is encrypted in transit (TLS 1.2+) and at rest (AES-256 via KMS), gated by RBAC and least-privilege, with GDPR export/delete rights and retention plus anonymization built in from the start.</div></div>
+        <div class="decision"><div class="d">Make the build decision economic, not vibes.</div><div class="why">I modeled three implementation options with monthly cost ranges at pilot scale, so the architecture choice is grounded in real numbers.</div></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>System architecture — the right store for each job</h4>
+      <div class="stack">
+        <div class="st"><span class="sk">User profile</span><span class="sv">PostgreSQL — ACID transactions, strong schema, joins</span></div>
+        <div class="st"><span class="sk">Auth</span><span class="sv">Secrets Manager / Vault — encrypted token storage, rotation</span></div>
+        <div class="st"><span class="sk">Session memory</span><span class="sv">Redis — low-latency context for live interviews</span></div>
+        <div class="st"><span class="sk">Interview records</span><span class="sv">MongoDB / S3 — flexible transcripts + feedback</span></div>
+        <div class="st"><span class="sk">Job descriptions</span><span class="sv">Pinecone + Redis cache — semantic retrieval for RAG</span></div>
+        <div class="st"><span class="sk">Analytics</span><span class="sv">ClickHouse / BigQuery — score-trend aggregations</span></div>
+        <div class="st"><span class="sk">Resource library</span><span class="sv">S3 + CloudFront — scalable asset delivery</span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>Cost analysis — monthly, at ~1,000 sessions</h4>
+      <div class="components">
+        <div class="comp"><span class="cname">Option A</span><span class="cdesc">Hosted GPT + serverless — lowest ops, instant autoscaling. <b>~$974–$1,654/mo.</b></span></div>
+        <div class="comp"><span class="cname">Option B</span><span class="cdesc">Hosted GPT + dedicated VMs — predictable baseline, more ops. <b>~$1,122–$1,602/mo.</b></span></div>
+        <div class="comp"><span class="cname">Option C</span><span class="cdesc">Fully self-hosted GPT — full data control, high fixed cost. <b>~$3,600–$4,100/mo.</b></span></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>What this delivered</h4>
+      <div class="out">
+        <div class="metric"><div class="n">5</div><div class="l">Phase 1 features scoped</div></div>
+        <div class="metric"><div class="n">7</div><div class="l">Data domains architected</div></div>
+        <div class="metric"><div class="n">5</div><div class="l">RAG applications mapped</div></div>
+        <div class="metric"><div class="n">3</div><div class="l">Cost options modeled</div></div>
+      </div>
+    </div>
+  </article>
+
+</div>
+
+<section class="skills">
+  <div class="wrap reveal">
+    <p class="lead-label">Toolkit</p>
+    <div class="skill-grid">
+      <div class="skill-card">
+        <h5>AI &amp; Agentic Systems</h5>
+        <p>LLM application development, RAG, MCP server design, multi-agent orchestration (LangGraph), agent memory (CoALA), prompt engineering, reasoning patterns (ReAct, Plan-and-Execute, Tree of Thoughts), vector search (pgvector), tool / function design, A2A patterns.</p>
+      </div>
+      <div class="skill-card">
+        <h5>Product</h5>
+        <p>Roadmap planning, PLG, GTM strategy, PRD ownership, A/B testing &amp; experimentation, user research, 0→1 product development, monetization.</p>
+      </div>
+      <div class="skill-card">
+        <h5>Platform &amp; Data</h5>
+        <p>API design, microservices, identity &amp; payment systems (x402), SQL, Python, Supabase, Next.js / React, Streamlit, Vercel, GCP.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap reveal">
+    <p class="eyebrow" style="color:var(--gold)">Get in touch</p>
+    <h2>Let's build something.</h2>
+    <div class="foot-links">
+      <a href="mailto:swatic0704@gmail.com">swatic0704@gmail.com</a>
+      <a href="https://www.linkedin.com/in/swati-chauhan07/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://github.com/swati070495" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+    <p class="copy">© 2026 Swati Chauhan · Menlo Park, CA · Built and deployed by hand.</p>
+  </div>
+</footer>
+
+</body>
+</html>
+
+
