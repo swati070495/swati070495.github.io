@@ -125,6 +125,37 @@
 
   .reveal{opacity:1;transform:none;}
   @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+
+  /* impact bar */
+  .impact-bar{margin-top:38px;display:flex;flex-wrap:wrap;gap:0;border:1px solid rgba(99,102,241,.25);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.6);backdrop-filter:blur(4px);}
+  .impact-stat{flex:1 1 140px;padding:18px 20px;border-left:1px solid rgba(99,102,241,.18);text-align:left;}
+  .impact-stat:first-child{border-left:none;}
+  .impact-stat .n{font-family:var(--display);font-weight:600;font-size:1.7rem;color:var(--evergreen);line-height:1;}
+  .impact-stat .l{font-size:.78rem;color:var(--muted);margin-top:6px;letter-spacing:.02em;}
+
+  /* about + photo */
+  .about-row{display:flex;gap:32px;align-items:flex-start;flex-wrap:wrap;}
+  .about-photo{flex:0 0 128px;width:128px;height:128px;border-radius:50%;background:var(--indigo-tint);border:1px solid rgba(99,102,241,.3);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .about-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .about-photo .ph-label{font-family:var(--mono);font-size:10.5px;color:var(--gold-deep);text-align:center;padding:0 10px;line-height:1.4;}
+  .about-text{flex:1 1 420px;}
+  .about-text p{font-size:1.18rem;max-width:64ch;color:#33403A;margin:0;}
+  .about-line{margin-top:14px;font-size:1.02rem;color:var(--muted);font-style:italic;}
+
+  /* media / screenshot placeholders */
+  .media{margin-top:22px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--paper);}
+  .media img{width:100%;display:block;}
+  .media-placeholder{padding:48px 20px;text-align:center;border:1.5px dashed rgba(99,102,241,.35);border-radius:12px;background:rgba(99,102,241,.04);}
+  .media-placeholder .ph-title{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-deep);}
+  .media-placeholder .ph-desc{font-size:.88rem;color:var(--muted);margin-top:6px;}
+  .media-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
+  @media(max-width:640px){.media-row{grid-template-columns:1fr;}}
+
+  /* flagship */
+  .flagship-banner{background:linear-gradient(135deg,var(--indigo-tint) 0%,#F4F5FB 100%);border:1px solid rgba(99,102,241,.28);border-radius:18px;padding:44px;margin-bottom:8px;}
+  .flagship-label{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-deep);display:flex;align-items:center;gap:8px;}
+  .flagship-label::before{content:'★';color:var(--gold);}
+
   a:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px;}
 </style>
 </head>
@@ -150,7 +181,13 @@
       <a href="https://github.com/swati070495" target="_blank" rel="noopener">↗ GitHub</a>
     </div>
     <div class="hero-rule"></div>
-    <div class="hero-index">
+    <div class="impact-bar">
+      <div class="impact-stat"><div class="n">$100M+</div><div class="l">Revenue driven at Albertsons</div></div>
+      <div class="impact-stat"><div class="n">6</div><div class="l">AI products designed &amp; built</div></div>
+      <div class="impact-stat"><div class="n">3</div><div class="l">Hackathon builds, incl. 1 win</div></div>
+      <div class="impact-stat"><div class="n">6+ yrs</div><div class="l">Platform-scale product experience</div></div>
+    </div>
+    <div class="hero-index" style="margin-top:30px;">
       <a href="#nestly"><b>Nestly</b> — AI interior-design platform · live · custom MCP server</a>
       <a href="#flamerewards"><b>FlameRewards</b> — GenUI QSR loyalty concept · hackathon winner</a>
       <a href="#pawconnect"><b>PawConnect</b> — agentic volunteering assistant · 3-agent LangGraph system</a>
@@ -163,16 +200,41 @@
 
 <section class="about wrap reveal">
   <p class="lead-label">About</p>
-  <p>I'm a product manager who builds the thing, not just specs it. At Albertsons I shipped the loyalty platform's first agentic AI experience and an enterprise GenAI conversational search engine. On my own time I design, build, and deploy multi-agent systems end to end — RAG pipelines, agent memory, reasoning loops, a custom MCP server, and autonomous on-chain payments. Each case study below is the real work: the decisions I made, how the system is wired, and what shipped.</p>
+  <div class="about-row">
+    <div class="about-photo">
+      <span class="ph-label">Photo<br>goes here</span>
+    </div>
+    <div class="about-text">
+      <p>I'm a product manager who builds the thing, not just specs it. At Albertsons I shipped the loyalty platform's first agentic AI experience and an enterprise GenAI conversational search engine. On my own time I design, build, and deploy multi-agent systems end to end — RAG pipelines, agent memory, reasoning loops, a custom MCP server, and autonomous on-chain payments. Each case study below is the real work: the decisions I made, how the system is wired, and what shipped.</p>
+      <p class="about-line">Based in Menlo Park, CA. I ship on weekends and win hackathons on weeknights.</p>
+    </div>
+  </div>
 </section>
 
 <div class="cases wrap">
 
-  <!-- ============ NESTLY ============ -->
-  <article class="case reveal" id="nestly">
-    <span class="case-tag">Live Product · Solo Build</span>
+  <!-- ============ NESTLY (FLAGSHIP) ============ -->
+  <div class="flagship-banner">
+  <article class="case reveal" id="nestly" style="padding-top:0;border-top:none;">
+    <span class="flagship-label">Flagship Project</span>
+    <span class="case-tag" style="margin-top:10px;">Live Product · Solo Build</span>
     <h3>Nestly</h3>
     <p class="tagline">An AI interior-design platform that turns a single room photo into an editorial-quality, fully shoppable redesign.</p>
+
+    <div class="media media-placeholder">
+      <div class="ph-title">Screenshot — Nestly hero / homepage</div>
+      <div class="ph-desc">Send the landing page or main app screen here</div>
+    </div>
+    <div class="media-row">
+      <div class="media-placeholder">
+        <div class="ph-title">Before</div>
+        <div class="ph-desc">Original room photo upload</div>
+      </div>
+      <div class="media-placeholder">
+        <div class="ph-title">After</div>
+        <div class="ph-desc">AI-generated redesign output</div>
+      </div>
+    </div>
 
     <dl class="specs">
       <div class="spec-row"><dt>Role</dt><dd>Solo — problem definition, UX, full generation funnel, MCP server</dd></div>
@@ -248,13 +310,27 @@
         <div class="metric"><div class="n">~339</div><div class="l">RAG corpus chunks</div></div>
       </div>
     </div>
+
+    <div class="block">
+      <h4>Process</h4>
+      <div class="media-placeholder">
+        <div class="ph-title">Process artifact</div>
+        <div class="ph-desc">Early sketch, flow diagram, or a screen from before the current design</div>
+      </div>
+    </div>
   </article>
+  </div>
 
   <!-- ============ FLAMEREWARDS ============ -->
   <article class="case reveal" id="flamerewards">
     <span class="case-tag">Hackathon Winner · Flutter SF × Very Good Ventures GenUI</span>
     <h3>FlameRewards</h3>
     <p class="tagline">A QSR loyalty concept where a 5-agent system composes each member's quests and challenge screens as generative UI, rendered fresh at runtime instead of fixed layouts.</p>
+
+    <div class="media media-placeholder">
+      <div class="ph-title">Screenshot — FlameRewards demo screen</div>
+      <div class="ph-desc">The generative UI in action — a quest or challenge screen</div>
+    </div>
 
     <dl class="specs">
       <div class="spec-row"><dt>Role</dt><dd>Solo — built and pitched as the only PM in the room</dd></div>
@@ -321,6 +397,11 @@
     <span class="case-tag">Stanford Agentic AI · Capstone</span>
     <h3>PawConnect</h3>
     <p class="tagline">An AI assistant that matches people to local animal-volunteering and fostering opportunities — scoped, built, and shipped in a 48-hour window.</p>
+
+    <div class="media media-placeholder">
+      <div class="ph-title">Screenshot — PawConnect app</div>
+      <div class="ph-desc">The Streamlit interface — matching flow or results screen</div>
+    </div>
 
     <dl class="specs">
       <div class="spec-row"><dt>Role</dt><dd>Solo — directed the architecture and shipped end to end</dd></div>
@@ -390,6 +471,11 @@
     <span class="case-tag">Internet of Agents Hackathon · AGI House × Coframe</span>
     <h3>STRIDE</h3>
     <p class="tagline">An autonomous shopping agent that closes the gap between recommending and buying — and can be trusted to spend.</p>
+
+    <div class="media media-placeholder">
+      <div class="ph-title">Screenshot — STRIDE onboarding or live run view</div>
+      <div class="ph-desc">The trust controls or the live reasoning view</div>
+    </div>
 
     <dl class="specs">
       <div class="spec-row"><dt>Role</dt><dd>Co-built — I owned the trust &amp; control layer and the user experience</dd></div>
@@ -463,6 +549,11 @@
     <span class="case-tag">Hackathon · AGI House × 1Password Agent Identity</span>
     <h3>TrustLane</h3>
     <p class="tagline">Agent-identity and fraud infrastructure for booking platforms — a trust layer that sits between AI agents and payment systems, scoring every action before money moves.</p>
+
+    <div class="media media-placeholder">
+      <div class="ph-title">Screenshot — TrustLane console</div>
+      <div class="ph-desc">The three-column dashboard in action</div>
+    </div>
 
     <dl class="specs">
       <div class="spec-row"><dt>Role</dt><dd>Co-built — team of two</dd></div>
@@ -552,6 +643,11 @@
     <span class="case-tag">Product &amp; System Design · Phase 1</span>
     <h3>InterviewIQ</h3>
     <p class="tagline">An AI interview-prep platform — role- and JD-tailored mock interviews with structured, STAR-based feedback. This case study is the Phase 1 product definition and system design.</p>
+
+    <div class="media media-placeholder">
+      <div class="ph-title">Diagram — system architecture or a UI mockup</div>
+      <div class="ph-desc">Optional: an architecture sketch or wireframe, since this is a spec, not a shipped screen</div>
+    </div>
 
     <dl class="specs">
       <div class="spec-row"><dt>Role</dt><dd>Product lead — scope, architecture, data &amp; privacy strategy, cost modeling</dd></div>
@@ -656,5 +752,3 @@
 
 </body>
 </html>
-
-
